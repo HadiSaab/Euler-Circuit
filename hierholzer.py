@@ -52,17 +52,13 @@ def outgoing_edges(vertex, edges):
     return [edge for edge in edges if edge[0] == vertex]
 
 
-def incoming_edges(vertex, edges):
-    # iterate through edge list to check incoming edges to vertex
-    return [edge for edge in edges if edge[1] == vertex]
-
-
 def cycle(vertex, edges):
     path = [vertex]
     next_path = outgoing_edges(vertex, edges)
     while next_path:
         v_edge = next_path[0]
         edges.remove(v_edge)
+        path.append(v_edge[1])
         vertex = v_edge[1]
         next_path = outgoing_edges(vertex, edges)
 
@@ -70,8 +66,17 @@ def cycle(vertex, edges):
 
 
 def hierholzer(vertices, edges):
+    temp_circuit = []
+    final_circuit = []
     source = vertices[0]
-    circuit, edges = cycle(source, edges)
+    cycle, edges = cycle(source, edges)
+    temp_circuit.append(cycle)
+    while len(temp_circuit) != 0:
+        vertex = temp_circuit.pop()
+        possible_edge_paths = outgoing_edges(vertex, edges)
+        if possible_edge_paths:
+            
+        
     
 
 
